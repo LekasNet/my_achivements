@@ -3,7 +3,11 @@ import 'package:flutter/services.dart';
 
 import 'package:my_achivements/pages/tourList.dart';
 import 'package:my_achivements/commons/colors.dart';
-import 'package:my_achivements/templates/customAppBar.dart';
+import 'package:my_achivements/commons/theme.dart';
+import 'package:my_achivements/presentation/mainParent.dart';
+import 'package:provider/provider.dart';
+
+import 'presentation/routes/navigator.dart';
 
 
 void main() {
@@ -34,15 +38,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Мои достижения',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.system,
-      home: Scaffold(
-        body: SafeArea(
-            top: true,
-            bottom: false,
-            child: TourList()
-        )
+      themeMode: AppTheme.themeMode,
+      theme: AppTheme.theme,
+      darkTheme: AppTheme.darkTheme,
+      home: ChangeNotifierProvider(
+        create: (context) => TabManager(),
+        child: Scaffold(
+          body: SafeArea(
+              top: true,
+              bottom: false,
+              child: MainParentBuilder(),
+          )
+        ),
       ),
     );
   }

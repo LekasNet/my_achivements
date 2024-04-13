@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:my_achivements/commons/theme.dart';
+
+
 class AvatarButton extends StatefulWidget {
   final VoidCallback? onTap; // Добавляем callback для обработки нажатия
 
@@ -52,21 +55,25 @@ class _AvatarButtonState extends State<AvatarButton> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         if (widget.onTap != null) {
           widget.onTap!();
         } else {
           toggleState();
         }
       },
-      icon: CircleAvatar(
-
-        backgroundImage: NetworkImage('https://avatars.cloudflare.steamstatic.com/b2d93ef9b6fe943afa8744a635f99285ad3c73e8_full.jpg'),
-
-        backgroundColor: isInTournament ? Colors.green : Colors.red,
-
-        radius: 25,
+      child: Container(
+        padding: EdgeInsets.all(3),  // Отступ для создания кольца
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isInTournament ? Colors.blue : AppTheme.colors.background01,  // Цвет кольца
+        ),
+        child: CircleAvatar(
+          backgroundImage: NetworkImage('https://avatars.cloudflare.steamstatic.com/b2d93ef9b6fe943afa8744a635f99285ad3c73e8_full.jpg'),
+          backgroundColor: isInTournament ? Colors.green : Colors.red,
+          radius: 25,  // Размер внутреннего аватара
+        ),
       ),
     );
   }
@@ -75,24 +82,33 @@ class _AvatarButtonState extends State<AvatarButton> with SingleTickerProviderSt
 class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Stack(children: [
+    return Material(child: SafeArea(child: Stack(children: [
       Scaffold(
-      backgroundColor: Colors.green,
-      appBar: AppBar(title: Text('Details'), backgroundColor: Colors.red,),
-      body: Center(
-        child: Text('Details Screen', style: Theme.of(context).textTheme.headline4),
-      ),
+        backgroundColor: Colors.green,
+        appBar: AppBar(title: Text('Details'), backgroundColor: Colors.red,),
+        body: Center(
+          child: Text('Details Screen', style: Theme
+              .of(context)
+              .textTheme
+              .headline4),
+        ),
       ),
       Positioned(
-        top: 5, // Регулируйте эти значения в соответствии с вашим интерфейсом
-        right: 10,
-        child: AvatarButton(
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ), // Ваша кнопка с аватаром
-      ),
-        ]
+        top: 0,
+        right: 0,
+        child: Container(
+          margin: EdgeInsets.only(top: 5, right: 10),
+          width: 50,
+          height: 50,
+          child: AvatarButton(
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      )
+    ]
+    )
     )
     );
   }

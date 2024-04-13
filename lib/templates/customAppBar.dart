@@ -110,9 +110,7 @@ class _BarState extends State<CustomTopBar> {
           Container(
             margin: EdgeInsets.fromLTRB(0, statusBarHeight + 7 * fem, 0, 0),
             color: Colors.transparent,
-            // Замените на цвет вашего фона
             height: 60.0,
-            // Замените на необходимую высоту
             alignment: Alignment.topCenter,
             child: const Text(
               'Достижения',
