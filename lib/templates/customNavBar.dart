@@ -19,14 +19,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
           selectedColor: Colors.purple,
         ),
         SalomonBottomBarItem(
-          icon: Icon(Icons.favorite_border),
-          title: Text("Likes"),
-          selectedColor: Colors.pink,
-        ),
-        SalomonBottomBarItem(
           icon: Icon(Icons.search),
           title: Text("Search"),
           selectedColor: Colors.orange,
+        ),
+        SalomonBottomBarItem(
+          icon: Icon(Icons.favorite_border),
+          title: Text("Likes"),
+          selectedColor: Colors.pink,
         ),
         SalomonBottomBarItem(
           icon: Icon(Icons.person),

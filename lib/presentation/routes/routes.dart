@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_achivements/pages/searchPage.dart';
 import 'package:my_achivements/pages/tourList.dart';
-
 
 
 class PageRouter {
@@ -8,7 +8,7 @@ class PageRouter {
 
   List<Widget> get pages => [
     Center(child: TourList()),
-    Center(child: Text('Likes')),
+    Center(child: SearchPage()),
     Center(child: Text('Search')),
     Center(child: Text('Profile')),
   ];

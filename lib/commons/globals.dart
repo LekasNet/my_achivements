@@ -22,7 +22,7 @@ List<CardInfo> cardList = [
 ];
 
 
-final appBorders = BorderRadius.circular(10);
+final cardBorders = BorderRadius.circular(10);
 
 var pageName = 'Новости';
 
