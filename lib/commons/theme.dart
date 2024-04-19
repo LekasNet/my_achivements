@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_achivements/commons/colors.dart';
-import 'package:my_achivements/commons/typography.dart';
+import 'package:my_achievements/commons/colors.dart';
+import 'package:my_achievements/commons/typography.dart';
 
 enum AppThemeType { light, dark, black }
 

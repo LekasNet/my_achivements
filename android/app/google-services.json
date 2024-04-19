@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509441181509",
+    "project_id": "myachivements-cdc34",
+    "storage_bucket": "myachivements-cdc34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509441181509:android:7a28c8dbc51fbadc50a02c",
+        "android_client_info": {
+          "package_name": "lek4s.MyAchivements.ru.my_achivements"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj6ZTr67MP9x4N8J0kRR7-q5qZM3LSnfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

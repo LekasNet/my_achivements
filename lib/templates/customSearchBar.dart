@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_achivements/domain/requests/searchRequest.dart';
+import 'package:my_achievements/domain/requests/searchRequest.dart';
 
 import '../domain/Preferences/SearchGlobals.dart';
 

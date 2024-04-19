@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:my_achivements/commons/theme.dart';
+import 'package:my_achievements/commons/theme.dart';
 
 
 class AvatarButton extends StatefulWidget {

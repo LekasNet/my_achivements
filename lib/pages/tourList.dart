@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_achivements/commons/globals.dart';
-import 'package:my_achivements/templates/decorations.dart';
-import 'package:my_achivements/templates/tourCard.dart';
+import 'package:my_achievements/commons/globals.dart';
+import 'package:my_achievements/templates/decorations.dart';
+import 'package:my_achievements/templates/tourCard.dart';
 
 
 class TourList extends StatefulWidget {

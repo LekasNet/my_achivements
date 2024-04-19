@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:my_achivements/presentation/routes/navigator.dart';
+import 'package:my_achievements/presentation/routes/navigator.dart';
 
 
 class CustomBottomNavigationBar extends StatelessWidget {

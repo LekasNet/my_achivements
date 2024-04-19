@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_achivements/commons/globals.dart';
-import 'package:my_achivements/templates/CustomSearchBar.dart';
-import 'package:my_achivements/templates/decorations.dart';
-import 'package:my_achivements/templates/tourCard.dart';
+import 'package:my_achievements/commons/globals.dart';
+import 'package:my_achievements/templates/CustomSearchBar.dart';
+import 'package:my_achievements/templates/decorations.dart';
+import 'package:my_achievements/templates/tourCard.dart';
 
 import '../domain/Preferences/SearchGlobals.dart';
 import '../domain/requests/searchRequest.dart';
@@ -22,6 +22,7 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     Globals.loadSearchQueries();
     _controller.addListener(_onSearchChanged);
+    getDataFromFirestore();
   }
 
   void _onSearchChanged() {

@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:my_achivements/pages/tourList.dart';
-import 'package:my_achivements/commons/colors.dart';
-import 'package:my_achivements/commons/theme.dart';
-import 'package:my_achivements/presentation/mainParent.dart';
 import 'package:provider/provider.dart';
 
-import 'presentation/routes/navigator.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+import 'package:my_achievements/presentation/routes/navigator.dart';
+import 'package:my_achievements/presentation/mainParent.dart';
+import 'package:my_achievements/commons/theme.dart';
 
 
-void main() {
+
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Делаем статус бар прозрачным
       statusBarIconBrightness: Brightness.dark, // Темные иконки для светлого фона
     ),
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   runApp(const MyApp());

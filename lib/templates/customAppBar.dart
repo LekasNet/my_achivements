@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_achivements/commons/globals.dart';
+import 'package:my_achievements/commons/globals.dart';
 
 import 'decorations.dart';
 

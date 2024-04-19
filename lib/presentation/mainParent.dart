@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_achivements/presentation/routes/navigator.dart';
-import 'package:my_achivements/presentation/routes/routes.dart';
-import 'package:my_achivements/templates/customNavBar.dart';
+import 'package:my_achievements/presentation/routes/navigator.dart';
+import 'package:my_achievements/presentation/routes/routes.dart';
+import 'package:my_achievements/templates/customNavBar.dart';
 import 'package:provider/provider.dart';
 
 
