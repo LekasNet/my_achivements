@@ -97,7 +97,7 @@ class DetailsPage extends StatelessWidget {
         top: 0,
         right: 0,
         child: Container(
-          margin: EdgeInsets.only(top: 5, right: 10),
+          margin: EdgeInsets.only(top: 3, right: 10),
           width: 50,
           height: 50,
           child: AvatarButton(

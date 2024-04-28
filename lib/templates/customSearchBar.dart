@@ -17,7 +17,7 @@ class CustomSearchBar extends StatefulWidget {
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
   late double topPadding = 16.0;
-  late double verticalPadding = 20.0;
+  late double verticalPadding = 16.0;
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      padding: EdgeInsets.only(top: topPadding, right: 10, left: 10),
+      padding: EdgeInsets.only(top: topPadding, right: 6, left: 6),
       duration: const Duration(milliseconds: 150),
       curve: Curves.easeOut,
       child: AnimatedPadding(

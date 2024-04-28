@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:my_achievements/commons/globals.dart';
+
 import 'package:my_achievements/templates/CustomSearchBar.dart';
-import 'package:my_achievements/templates/decorations.dart';
 import 'package:my_achievements/templates/tourCard.dart';
 
 import '../domain/Preferences/SearchGlobals.dart';
@@ -16,6 +16,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _controller = TextEditingController();
+  List<DocumentSnapshot> searchResults = [];
 
   @override
   void initState() {
@@ -26,8 +27,20 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _onSearchChanged() {
-    SearchingQuery(_controller.text);
-    setState(() {});
+    if (_controller.text.isEmpty) {
+      setState(() {
+        searchResults.clear();
+      });
+    } else {
+      searchArticles(_controller.text).then((results) {
+        setState(() {
+          searchResults = results;
+        });
+        print(results);
+      }).catchError((error) {
+        // Обработка ошибки
+      });
+    }
   }
 
   void onSearchSubmitted(String query) {
@@ -41,7 +54,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void onSearchQueryTap(String query) {
     setState(() {
-      _controller.text = query; // Вставка текста в поле поиска
+      _controller.text = query;
     });
   }
 
@@ -51,21 +64,25 @@ class _SearchPageState extends State<SearchPage> {
       body: Stack(
         children: [
           Padding(padding: EdgeInsets.only(top: 30),
-          child:Scaffold(
+          child: Scaffold(
             body: _controller.text.isNotEmpty ?
             ListView.separated(
               controller: _scrollController,
               padding: const EdgeInsets.only(
                   top: 120, left: 16, right: 16, bottom: 16),
-              itemCount: cardList.length,
+              itemCount: searchResults.length,
               itemBuilder: (context, index) {
+                final doc = searchResults[index].data() as Map<String, dynamic>;
                 return TourCard(
-                  imagePath: 'assets/image.jpg',
-                  text: cardList[index].text,
+                  imagePath: doc['image'],
+                  text: doc['title'],
+                  description: doc['description'],
+                  tags: const [],
+                  category: doc['category'],
+                  date: doc['pubdate'],
                 );
               },
-              separatorBuilder: (context, index) =>
-              const Divider(
+              separatorBuilder: (context, index) => const Divider(
                 height: 20,
                 color: Colors.transparent,
               ),
@@ -77,11 +94,15 @@ class _SearchPageState extends State<SearchPage> {
                 return InkWell(
                   onTap: () => onSearchQueryTap(Globals.searchQueries[index]),
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                     child: Center(
                       child: Text(
                         Globals.searchQueries[index],
-                        style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
                     )
                   ),
@@ -90,7 +111,11 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           ),
-          CustomSearchBar(scrollController: _scrollController, onSearchSubmitted: onSearchSubmitted, controller: _controller,),
+          CustomSearchBar(
+            scrollController: _scrollController,
+            onSearchSubmitted: onSearchSubmitted,
+            controller: _controller,
+          ),
         ],
       )
     );

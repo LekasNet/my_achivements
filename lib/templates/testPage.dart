@@ -12,7 +12,7 @@ class MyFirebasePage extends StatelessWidget {
             return Text("Ошибка: ${snapshot.error}");
           }
           if (snapshot.hasData) {
-            return Text("Данные: ${snapshot.data?['field']}");
+            return Text("Данные: ${snapshot.data?['tag']}");
           } else {
             return Text("Данные не найдены");
           }

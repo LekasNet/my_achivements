@@ -6,7 +6,6 @@ class Globals {
   static Future<void> loadSearchQueries() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     searchQueries = prefs.getStringList('searchQueries') ?? [];
-    print(searchQueries);
   }
 
   static Future<void> addSearchQuery(String query) async {

@@ -30,7 +30,10 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       titleSpacing: 24,
       backgroundColor: darkThemeColors.background01,
-      shadowColor: Colors.transparent,
+      foregroundColor: darkThemeColors.background01,
+      shadowColor: Colors.black,
+      elevation: 0,
+      scrolledUnderElevation: 0,
       titleTextStyle:
       AppTextStyle.title.copyWith(color: darkThemeColors.active),
       iconTheme: IconThemeData(color: blackThemeColors.active),
