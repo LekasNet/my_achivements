@@ -13,6 +13,7 @@ class TourCard extends StatelessWidget {
   final String category;
   final Timestamp date;
   final List<dynamic> tags;
+  final Function(String) onTagTap;
 
   const TourCard({
     Key? key,
@@ -22,6 +23,7 @@ class TourCard extends StatelessWidget {
     required this.category,
     required this.date,
     required this.tags,
+    required this.onTagTap,
   }) : super(key: key);
 
   String formatTimestamp(Timestamp timestamp) {
@@ -97,7 +99,7 @@ class TourCard extends StatelessWidget {
                           child: Wrap(
                             spacing: 8.0,
                             runSpacing: 8.0,
-                            children: tags.map((tag) => _buildTag(tag)).toList(),
+                              children: tags.map((tag) => _buildTag(tag as String, context)).toList(),
                           ),
                         ),
                       ],
@@ -109,18 +111,23 @@ class TourCard extends StatelessWidget {
         )
     );
   }
-  Widget _buildTag(String tag) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Color(0xFF9EF3A4), width: 2),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Text(
-        tag.toLowerCase(),
-        style: const TextStyle(
-          color: Color(0xFF9EF3A4),
-          fontWeight: FontWeight.bold,
+  Widget _buildTag(String tag, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTagTap(tag);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: Color(0xFF9EF3A4), width: 2),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+        child: Text(
+          tag.toLowerCase(),
+          style: const TextStyle(
+            color: Color(0xFF9EF3A4),
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

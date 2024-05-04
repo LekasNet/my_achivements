@@ -80,6 +80,8 @@ class _SearchPageState extends State<SearchPage> {
                   tags: const [],
                   category: doc['category'],
                   date: doc['pubdate'],
+                  onTagTap: (String ) { null; },
+
                 );
               },
               separatorBuilder: (context, index) => const Divider(

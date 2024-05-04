@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -57,9 +58,20 @@ class MyApp extends StatelessWidget {
       themeMode: AppTheme.themeMode,
       theme: AppTheme.theme,
       darkTheme: AppTheme.darkTheme,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ru', 'RU'), // Русский язык
+        // Другие поддерживаемые языки
+      ],
+      locale: const Locale('ru', 'RU'),
       home: ChangeNotifierProvider(
         create: (context) => TabManager(),
         child: const Scaffold(
+            resizeToAvoidBottomInset: false,
           body: SafeArea(
               top: true,
               bottom: false,
