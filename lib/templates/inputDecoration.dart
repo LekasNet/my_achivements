@@ -77,7 +77,8 @@ Widget buildDateInputField(BuildContext context,  DateTime selectedDate, Functio
   );
 }
 
-Widget buildDropdownButton(String role, Function(String) onRoleChanged) {
+Widget buildDropdownButton(String role, Function(String) onRoleChanged,
+    {List<String> items=roles}) {
   return Container(
 
     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -97,7 +98,7 @@ Widget buildDropdownButton(String role, Function(String) onRoleChanged) {
         onChanged: (String? newValue) {
           onRoleChanged(newValue!);
         },
-        items: roles.map<DropdownMenuItem<String>>((String value) {
+        items: items.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_achievements/pages/login.dart';
+import 'package:my_achievements/presentation/routes/navigator.dart';
+import 'package:provider/provider.dart';
 
 import '../domain/requests/loginRequest.dart';
 import '../domain/requests/registrationRequest.dart';
+import '../pages/account.dart';
 import 'inputDecoration.dart';
 
 class RegistrationProcess extends StatefulWidget {
@@ -36,25 +40,22 @@ class _RegistrationProcessState extends State<RegistrationProcess> with TickerPr
     return Column(
         key: _loginFormKey,
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           buildInputField(_usernameController, 'Логин', (value) { if (_loginError.isEmpty) return _loginError; return null; }),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           buildInputField(_passwordController, 'Пароль', null),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () async {
               bool isLoggedIn = await login(_usernameController.text, _passwordController.text, rerun);
-              if (!isLoggedIn) {
+              if (isLoggedIn) {
+                Provider.of<TabManager>(context, listen: false).setCurrentIndex(3);
+              } else {
                 setState(() {
                   _loginError = 'Неправильный логин или пароль';
                 });
                 print("Login with: ${_usernameController.text}, ${_passwordController.text}");
-              } else {
-                // Переход к следующему экрану или обновление UI
-                setState(() {
-                  _loginError = '';
-                });
-
               }
             },
             child: Text('Войти'),
@@ -261,6 +262,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> with TickerPr
 
   @override
   Widget build(BuildContext context) {
+
     switch (_currentStep) {
       case 0:
         currentForm = _buildLoginForm();

@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import  'package:flutter/material.dart';
-import 'dart:math';
 
+import  'package:flutter/material.dart';
 import '../commons/GradientCard.dart';
-import '../templates/inputDecoration.dart';
 import '../templates/registrationMenu.dart';
 
 class LoginPage extends StatefulWidget {

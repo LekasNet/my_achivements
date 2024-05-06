@@ -47,6 +47,7 @@ class TourCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFF252a32),
               borderRadius: cardBorders * 2,
+              border: category == 'Tournaments' ? Border.all(width: 2, color: Colors.red) : null,
             ),
             child: Padding(
               padding: EdgeInsets.all(20),

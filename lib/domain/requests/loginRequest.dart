@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<bool> login(String username, String password, void Function() rerun) async {
@@ -19,6 +18,11 @@ Future<bool> login(String username, String password, void Function() rerun) asyn
       await prefs.setString('userId', user.id);
       await prefs.setString('username', username);
       await prefs.setString('email', user['email']);
+      await prefs.setString('lastName', user['lastName']);
+      await prefs.setString('firstName', user['firstName']);
+      await prefs.setString('middleName', user['middleName']);
+      await prefs.setString('role', user['role']);
+      if (user['admin'] != null) await prefs.setBool('isAdmin', user['admin']);
       // Можно сохранить и другие необходимые данные
       return true;
     } else {
