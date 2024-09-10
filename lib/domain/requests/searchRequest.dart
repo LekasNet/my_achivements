@@ -7,7 +7,7 @@ void getDataFromFirestore() async {
     DocumentSnapshot documentSnapshot = await firestore.collection('articles').doc('0').get();
 
     if (documentSnapshot.exists) {
-      print('Document data: ${documentSnapshot.data()}');
+
     } else {
       print('Document does not exist!');
     }

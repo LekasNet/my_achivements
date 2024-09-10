@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,6 +31,7 @@ void main() async {
     appleProvider: AppleProvider.debug,
   );
 
+
   initializeDateFormatting('ru_RU').then((_) {
     runApp(const MyApp());
   });
@@ -58,13 +58,13 @@ class MyApp extends StatelessWidget {
       themeMode: AppTheme.themeMode,
       theme: AppTheme.theme,
       darkTheme: AppTheme.darkTheme,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('ru', 'RU'), // Русский язык
+      supportedLocales: const [
+        Locale('ru', 'RU'), // Русский язык
         // Другие поддерживаемые языки
       ],
       locale: const Locale('ru', 'RU'),

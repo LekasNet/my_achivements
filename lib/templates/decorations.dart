@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:my_achievements/commons/theme.dart';
+import 'package:my_achievements/pages/account.dart';
 
 
 class AvatarButton extends StatefulWidget {
@@ -34,7 +35,7 @@ class _AvatarButtonState extends State<AvatarButton> with SingleTickerProviderSt
     final double radius = math.sqrt(math.pow(screenWidth, 2) + math.pow(screenHeight, 2));
 
     Navigator.of(context).push(PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => DetailsPage(),
+      pageBuilder: (context, animation, secondaryAnimation) => ProfilePage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return AnimatedBuilder(
           animation: animation,
@@ -90,23 +91,9 @@ class DetailsPage extends StatelessWidget {
           child: Text('Details Screen', style: Theme
               .of(context)
               .textTheme
-              .headline4),
+              .headlineLarge),
         ),
       ),
-      Positioned(
-        top: 0,
-        right: 0,
-        child: Container(
-          margin: EdgeInsets.only(top: 3, right: 10),
-          width: 50,
-          height: 50,
-          child: AvatarButton(
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-      )
     ]
     )
     )
