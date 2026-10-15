@@ -14,6 +14,7 @@ class TourList extends StatefulWidget {
 }
 
 class _TourListState extends State<TourList> {
+  late bool _tournamentFilterActive = false;
   final Set<String> _uniqueTags = {};
   final Set<String> _selectedTags = {};
 
@@ -38,7 +39,7 @@ class _TourListState extends State<TourList> {
                             }
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return CircularProgressIndicator();
+                              return const CircularProgressIndicator();
                             }
 
                             var articles = snapshot.data ?? [];
@@ -47,11 +48,12 @@ class _TourListState extends State<TourList> {
                             List<DocumentSnapshot> filteredArticles = [];
                             for (var article in articles) {
                               List<dynamic> tags = article['tag'] as List<dynamic>;
-                              if (_selectedTags.isEmpty || tags.any((tag) => _selectedTags.contains(tag))) {
+                              if ((_selectedTags.isEmpty || tags.any((tag) => _selectedTags.contains(tag))) && (!_tournamentFilterActive || article['category'] == "Tournaments")) {
                                 filteredArticles.add(article);
                               }
                               tags.forEach((tag) => _uniqueTags.add(tag as String));
                             }
+
 
                             return ListView.separated(
                               padding: const EdgeInsets.only(
@@ -91,6 +93,15 @@ class _TourListState extends State<TourList> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    IconButton(
+                      icon: Icon(Icons.emoji_events, color: _tournamentFilterActive ? Colors.orange : Colors.white),
+                      onPressed: () {
+                        setState(() {
+                          _tournamentFilterActive = !_tournamentFilterActive;
+                        });
+                      },
+                    ),
+
                     Container(
                       margin: EdgeInsets.only(top: 3, right: 10),
                       child: IconButton(
@@ -152,7 +163,7 @@ class _TourListState extends State<TourList> {
       backgroundColor: Colors.transparent,
       selectedColor: Theme.of(context).primaryColor.withOpacity(0.5),
       checkmarkColor: Colors.white,
-      shape: StadiumBorder(side: BorderSide(color: Colors.green)),
+      shape: const StadiumBorder(side: BorderSide(color: Colors.green)),
     );
   }
 }
